@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does agent memory beat plain retrieval?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,650&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column (about 66ch) with figures allowed to run wider; a lab-notebook feel, numbers in mono. */
+:root {
+  --paper: #f6f7f9;
+  --ink: #16202b;
+  --muted: #5b6774;
+  --rule: #d6dbe1;
+  --accent: #0b6e8a;      /* full context, the result that wins */
+  --warn: #b5541a;        /* the Mem0 date defect */
+  --soft: #e7ecf1;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11161c; --ink: #e4e9ee; --muted: #9aa6b2; --rule: #2a333d;
+    --accent: #4fb8d4; --warn: #e88a52; --soft: #1b232c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11161c; --ink: #e4e9ee; --muted: #9aa6b2; --rule: #2a333d;
+  --accent: #4fb8d4; --warn: #e88a52; --soft: #1b232c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--body); }
+main { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; display: grid; gap: 28px; }
+header { display: grid; gap: 10px; border-bottom: 1px solid var(--rule); padding-bottom: 22px; }
+.kicker { font: 500 13px/1.4 var(--mono); color: var(--muted); letter-spacing: .02em; }
+h1 { font: 650 clamp(30px, 6vw, 44px)/1.12 var(--display); margin: 0; text-wrap: balance; }
+h2 { font: 650 24px/1.25 var(--display); margin: 12px 0 0; text-wrap: balance; }
+h3 { font: 600 17px/1.4 var(--body); margin: 0; }
+p { margin: 0; max-width: 66ch; }
+.lead { font-size: 19px; }
+section { display: grid; gap: 14px; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+figure { margin: 8px 0; display: grid; gap: 10px; }
+figure svg { width: 100%; height: auto; display: block; color: var(--ink); }
+.figwrap { overflow-x: auto; background: var(--soft); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 16px 12px; }
+figcaption { font-size: 14px; color: var(--muted); max-width: 70ch; }
+figcaption b { color: var(--ink); font-weight: 600; }
+.answer { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.tile { border-top: 3px solid var(--rule); padding-top: 8px; display: grid; gap: 2px; }
+.tile.win { border-color: var(--accent); }
+.tile.bug { border-color: var(--warn); }
+.tile .big { font: 500 28px/1.1 var(--mono); }
+.tile .lbl { font-size: 13px; color: var(--muted); }
+.tablewrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 520px; }
+th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font: 600 12px/1.3 var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+td.fc { color: var(--accent); font-weight: 600; }
+ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 66ch; }
+.note { font-size: 14px; color: var(--muted); }
+footer { border-top: 1px solid var(--rule); padding-top: 18px; font-size: 14px; color: var(--muted); display: grid; gap: 6px; }
+@media (max-width: 420px) { body { font-size: 16px; } .lead { font-size: 17px; } }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="kicker">Narva · DOM-01 memory for AI agents · round 1 · November 2026</div>
+  <h1>Does agent memory beat plain retrieval?</h1>
+  <p class="lead">We ran Mem0 and Graphiti, a plain vector search over the raw conversation, and the whole conversation in the context window through one protocol on all of LoCoMo: 10 long conversations, 1,540 questions, every answer graded by the same stronger model. Neither memory system beat the plain search, and putting the whole conversation in the window beat everything by a wide margin.</p>
+</header>
+
+<section aria-label="Results in one line each">
+  <div class="answer">
+    <div class="tile win"><span class="big">79.9%</span><span class="lbl">whole conversation in the window</span></div>
+    <div class="tile"><span class="big">60.7%</span><span class="lbl">plain vector search, 10 raw turns</span></div>
+    <div class="tile"><span class="big">52.1%</span><span class="lbl">Graphiti 0.31.2</span></div>
+    <div class="tile bug"><span class="big">45.8%</span><span class="lbl">Mem0 open source 2.2.1</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>The result</h2>
+  <figure>
+    <div class="figwrap">
+      <svg viewBox="0 0 700 300" role="img" aria-label="Accuracy on 1,540 LoCoMo questions: whole conversation 79.9 percent, plain vector search 60.7 percent, Graphiti 52.1 percent, Mem0 open source 45.8 percent. Gaps to the vector search with 95 percent intervals: plus 19.2, minus 8.5, minus 14.9.">
+        <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" fill="currentColor">
+          <!-- x scale: 0% at x=190, 100% at x=640 (4.5 px per point) -->
+          <g stroke="currentColor" stroke-opacity=".15">
+            <line x1="190" y1="20" x2="190" y2="250"/><line x1="280" y1="20" x2="280" y2="250"/>
+            <line x1="370" y1="20" x2="370" y2="250"/><line x1="460" y1="20" x2="460" y2="250"/>
+            <line x1="550" y1="20" x2="550" y2="250"/><line x1="640" y1="20" x2="640" y2="250"/>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill-opacity=".6" text-anchor="middle">
+            <text x="190" y="268">0%</text><text x="280" y="268">20%</text><text x="370" y="268">40%</text>
+            <text x="460" y="268">60%</text><text x="550" y="268">80%</text><text x="640" y="268">100%</text>
+          </g>
+          <text x="415" y="290" text-anchor="middle" font-size="12" fill-opacity=".7">answered correctly, 1,540 questions, graded by gemini-3.1-pro-preview</text>
+          <!-- rows -->
+          <text x="178" y="55" text-anchor="end" font-weight="600">Whole conversation</text>
+          <text x="178" y="71" text-anchor="end" font-size="11" fill-opacity=".65">26,751 tokens / question</text>
+          <rect x="190" y="40" width="359.4" height="28" rx="2" fill="#0b6e8a"/>
+          <text x="557" y="59" font-family="IBM Plex Mono, monospace">79.9%  +19.2</text>
+
+          <text x="178" y="110" text-anchor="end" font-weight="600">Vector search</text>
+          <text x="178" y="126" text-anchor="end" font-size="11" fill-opacity=".65">681 tokens / question</text>
+          <rect x="190" y="95" width="272.9" height="28" rx="2" fill="currentColor" fill-opacity=".45"/>
+          <text x="471" y="114" font-family="IBM Plex Mono, monospace">60.7%  baseline</text>
+
+          <text x="178" y="165" text-anchor="end" font-weight="600">Graphiti</text>
+          <text x="178" y="181" text-anchor="end" font-size="11" fill-opacity=".65">387 tokens / question</text>
+          <rect x="190" y="150" width="234.4" height="28" rx="2" fill="currentColor" fill-opacity=".25"/>
+          <text x="432" y="169" font-family="IBM Plex Mono, monospace">52.1%  −8.5</text>
+
+          <text x="178" y="220" text-anchor="end" font-weight="600">Mem0 open source</text>
+          <text x="178" y="236" text-anchor="end" font-size="11" fill-opacity=".65">475 tokens / question</text>
+          <rect x="190" y="205" width="206.0" height="28" rx="2" fill="currentColor" fill-opacity=".25"/>
+          <text x="404" y="224" font-family="IBM Plex Mono, monospace">45.8%  −14.9</text>
+          <!-- baseline reference line at 60.7% -->
+          <line x1="463" y1="30" x2="463" y2="88" stroke="currentColor" stroke-dasharray="3 3" stroke-opacity=".55"/>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 1.</b> Share of questions answered correctly, and the gap to the plain vector search in points. Paired bootstrap 95% intervals for the gaps: whole conversation +16.9 to +21.6, Graphiti −11.3 to −5.7, Mem0 −17.9 to −11.9. All three intervals exclude zero.</figcaption>
+  </figure>
+  <p>The two memory systems do more work at write time than the plain search: they send every session through a language model, extract facts, and store those facts instead of the words. On this benchmark that work lost information. Both systems answered "not mentioned" more often than the plain search (Mem0 470 times, Graphiti 412, plain search 347), so facts that were in the conversation did not survive extraction. The whole conversation in the window said "not mentioned" only 83 times.</p>
+</section>
+
+<section>
+  <h2>Where the information goes</h2>
+  <figure>
+    <div class="figwrap">
+      <svg viewBox="0 0 720 330" role="img" aria-label="Four paths from the same conversation to the same answer model. The whole conversation path passes everything. The vector search path keeps the raw turns and retrieves ten. Mem0 and Graphiti pass each session through a language model that extracts facts, and only the extracted facts reach the answer model.">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          <marker id="arA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0b6e8a"/>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="currentColor">
+          <!-- source -->
+          <rect x="10" y="125" width="120" height="80" rx="4" fill="none" stroke="currentColor"/>
+          <text x="70" y="152" text-anchor="middle" font-weight="600">Conversation</text>
+          <text x="70" y="170" text-anchor="middle" font-size="11" fill-opacity=".7">19 to 32 dated</text>
+          <text x="70" y="185" text-anchor="middle" font-size="11" fill-opacity=".7">sessions</text>
+          <!-- answer model and judge -->
+          <rect x="560" y="125" width="70" height="80" rx="4" fill="none" stroke="currentColor"/>
+          <text x="595" y="160" text-anchor="middle" font-weight="600">Answer</text>
+          <text x="595" y="176" text-anchor="middle" font-size="11" fill-opacity=".7">Gemini 3</text>
+          <text x="595" y="190" text-anchor="middle" font-size="11" fill-opacity=".7">Flash</text>
+          <rect x="650" y="140" width="62" height="50" rx="4" fill="none" stroke="currentColor"/>
+          <text x="681" y="162" text-anchor="middle" font-weight="600">Judge</text>
+          <text x="681" y="178" text-anchor="middle" font-size="11" fill-opacity=".7">3.1 Pro</text>
+          <line x1="630" y1="165" x2="648" y2="165" stroke="currentColor" marker-end="url(#ar)"/>
+
+          <!-- lane 1: whole conversation -->
+          <path d="M130 140 C 170 140, 170 40, 210 40" fill="none" stroke="#0b6e8a" stroke-width="2"/>
+          <line x1="210" y1="40" x2="540" y2="40" stroke="#0b6e8a" stroke-width="2"/>
+          <path d="M540 40 C 556 40, 556 130, 558 135" fill="none" stroke="#0b6e8a" stroke-width="2" marker-end="url(#arA)"/>
+          <text x="375" y="32" text-anchor="middle" fill="#0b6e8a" font-weight="600">whole conversation, every word and date</text>
+
+          <!-- lane 2: vector search -->
+          <path d="M130 155 C 160 155, 160 105, 190 105" fill="none" stroke="currentColor"/>
+          <rect x="190" y="88" width="120" height="34" rx="4" fill="none" stroke="currentColor"/>
+          <text x="250" y="109" text-anchor="middle">store raw turns</text>
+          <line x1="310" y1="105" x2="380" y2="105" stroke="currentColor" marker-end="url(#ar)"/>
+          <text x="345" y="98" text-anchor="middle" font-size="11" fill-opacity=".7">embed</text>
+          <rect x="382" y="88" width="120" height="34" rx="4" fill="none" stroke="currentColor"/>
+          <text x="442" y="109" text-anchor="middle">top 10 turns</text>
+          <path d="M502 105 C 535 105, 540 140, 558 150" fill="none" stroke="currentColor" marker-end="url(#ar)"/>
+
+          <!-- lane 3: Mem0 -->
+          <path d="M130 185 C 160 185, 160 225, 190 225" fill="none" stroke="currentColor"/>
+          <rect x="190" y="208" width="120" height="34" rx="4" fill="none" stroke="currentColor" stroke-dasharray="4 3"/>
+          <text x="250" y="229" text-anchor="middle">LLM extracts facts</text>
+          <line x1="310" y1="225" x2="380" y2="225" stroke="currentColor" marker-end="url(#ar)"/>
+          <text x="345" y="218" text-anchor="middle" font-size="11" fill-opacity=".7">facts only</text>
+          <rect x="382" y="208" width="120" height="34" rx="4" fill="none" stroke="currentColor"/>
+          <text x="442" y="229" text-anchor="middle">Mem0: top 10 facts</text>
+          <path d="M502 225 C 535 225, 540 190, 558 180" fill="none" stroke="currentColor" marker-end="url(#ar)"/>
+
+          <!-- lane 4: Graphiti -->
+          <path d="M130 200 C 160 200, 160 290, 190 290" fill="none" stroke="currentColor"/>
+          <rect x="190" y="273" width="120" height="34" rx="4" fill="none" stroke="currentColor" stroke-dasharray="4 3"/>
+          <text x="250" y="294" text-anchor="middle">LLM builds a graph</text>
+          <line x1="310" y1="290" x2="380" y2="290" stroke="currentColor" marker-end="url(#ar)"/>
+          <text x="345" y="283" text-anchor="middle" font-size="11" fill-opacity=".7">dated edges</text>
+          <rect x="382" y="273" width="120" height="34" rx="4" fill="none" stroke="currentColor"/>
+          <text x="442" y="294" text-anchor="middle">Graphiti: 10 facts</text>
+          <path d="M502 290 C 545 290, 552 215, 576 206" fill="none" stroke="currentColor" marker-end="url(#ar)"/>
+          <text x="250" y="322" text-anchor="middle" font-size="11" fill-opacity=".7">dashed: a model call at write time decides what is kept</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 2.</b> The four systems differ only in what reaches the answer model. The same answer prompt, answer model and judge were used for all four. The dashed steps are where Mem0 and Graphiti drop what their extraction model did not keep.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>A dating defect in Mem0 open source</h2>
+  <p>On questions about time, Mem0 answered 38.6% correctly against 63.5% for the plain search, and 82 of its 321 time answers named 2026, the year we ingested the data. The conversations took place in 2022 and 2023. Neither the plain search nor Graphiti made that mistake once.</p>
+  <figure>
+    <div class="figwrap">
+      <svg viewBox="0 0 720 190" role="img" aria-label="Mem0's extraction prompt treats its Observation Date as the only anchor for time, but the open-source add call never fills it, so it is always the day of ingest. A session dated May 2023 is therefore stored with 2026 dates.">
+        <defs>
+          <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" fill="currentColor">
+          <rect x="10" y="30" width="190" height="70" rx="4" fill="none" stroke="currentColor"/>
+          <text x="105" y="55" text-anchor="middle" font-weight="600">Session of 25 May 2023</text>
+          <text x="105" y="74" text-anchor="middle" font-size="11">Melanie mentions a charity</text>
+          <text x="105" y="89" text-anchor="middle" font-size="11">race "last Sunday"</text>
+          <line x1="200" y1="65" x2="255" y2="65" stroke="currentColor" marker-end="url(#arw)"/>
+          <rect x="257" y="20" width="200" height="90" rx="4" fill="none" stroke="#b5541a" stroke-width="2"/>
+          <text x="357" y="44" text-anchor="middle" font-weight="600">Mem0 extraction prompt</text>
+          <text x="357" y="64" text-anchor="middle" font-size="11">Observation Date: the only</text>
+          <text x="357" y="79" text-anchor="middle" font-size="11">anchor for relative time</text>
+          <text x="357" y="98" text-anchor="middle" font-size="11" fill="#b5541a" font-weight="600">add() never sets it: always today</text>
+          <line x1="457" y1="65" x2="512" y2="65" stroke="currentColor" marker-end="url(#arw)"/>
+          <rect x="514" y="30" width="200" height="70" rx="4" fill="none" stroke="currentColor"/>
+          <text x="614" y="52" text-anchor="middle" font-weight="600">Mem0's answer</text>
+          <text x="614" y="71" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#b5541a">Saturday, November 14, 2026</text>
+          <text x="614" y="89" text-anchor="middle" font-size="11" fill-opacity=".7">key: Sunday before 25 May 2023</text>
+          <text x="360" y="150" text-anchor="middle" font-size="12">82 of 321 time answers named 2026 · time accuracy 38.6% against 63.5%</text>
+          <text x="360" y="170" text-anchor="middle" font-size="11" fill-opacity=".7">The open-source SDK also refuses a timestamp argument, so the session date can only travel inside the text.</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption><b>Figure 3.</b> Why Mem0 dates old conversations by today. In mem0ai 2.2.1 the extraction prompt says its Observation Date is the only temporal anchor, and the open-source <span class="num">add()</span> never passes a date to it, so it is always the day of ingest. The example is a real question from the run ("When did Melanie run a charity race?"). This is the open-source library, not Mem0's hosted platform.</figcaption>
+  </figure>
+  <p>Leaving time questions out does not rescue Mem0: on the other 1,219 questions it still trailed the plain search by 12.2 points (interval −15.4 to −9.0). Graphiti trailed by 11.3 on the same questions (−14.6 to −8.2), even though it matched the plain search on time questions (65.7% against 63.5%).</p>
+</section>
+
+<section>
+  <h2>By question type</h2>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Question type</th><th>Questions</th><th>Whole conversation</th><th>Vector search</th><th>Graphiti</th><th>Mem0</th></tr></thead>
+      <tbody>
+        <tr><td>Linking several facts</td><td>282</td><td class="fc">64.5%</td><td>38.3%</td><td>36.5%</td><td>39.7%</td></tr>
+        <tr><td>Time</td><td>321</td><td class="fc">80.7%</td><td>63.5%</td><td>65.7%</td><td>38.6%</td></tr>
+        <tr><td>Open-domain inference</td><td>96</td><td class="fc">40.6%</td><td>19.8%</td><td>21.9%</td><td>22.9%</td></tr>
+        <tr><td>Single fact</td><td>841</td><td class="fc">89.2%</td><td>71.7%</td><td>55.6%</td><td>53.1%</td></tr>
+        <tr><td><b>All</b></td><td>1,540</td><td class="fc">79.9%</td><td>60.7%</td><td>52.1%</td><td>45.8%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">LoCoMo categories 1 to 4; category 5 (adversarial) has no usable answer key and is excluded, as in the published evaluations.</p>
+</section>
+
+<section>
+  <h2>What this means for builders</h2>
+  <ul>
+    <li><b>If the history fits in the model's context window, put all of it in.</b> The largest prompt here was 30,892 tokens. It costs about 39 times the tokens of retrieval per question, and it was 19 points more accurate.</li>
+    <li><b>Keep the raw text.</b> Extracting facts at write time lost more than it gained here; a plain search over the original turns beat both extraction systems.</li>
+    <li><b>Test time questions on your own data</b> before trusting dates from Mem0 open source on past conversations.</li>
+    <li><b>Treat published vendor scores as unconfirmed</b> outside their own setups. Mem0's own paper reports full context ahead of Mem0 too (72.9% against 66.9% with its setup); the gap we measured is larger.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>How it was measured</h2>
+  <ul>
+    <li><b>Pre-registered.</b> The spec (DOM-01-phaseB-v2.1, sha256 <span class="num">fc83e666…a547</span>) fixed models, prompts, statistics and verdict rules before the run. Code refused a full run until a small smoke run with the same spec and code had passed.</li>
+    <li><b>Same everything.</b> One answer prompt and one answer model (gemini-3-flash-preview, low thinking) for all four systems; each memory system used the same model internally. Every answer was graded by gemini-3.1-pro-preview against the LoCoMo answer key.</li>
+    <li><b>Statistics.</b> Paired differences per question, 95% percentile bootstrap, 10,000 resamples, seed 0. A verdict of better or worse needs the whole interval on one side of zero.</li>
+    <li><b>Versions.</b> mem0ai 2.2.1 (each session added whole, dates inside the text); graphiti-core 0.31.2 on FalkorDB (each session one episode with its date as reference time, 10 facts returned with their valid dates). The vector search returns 10 raw turns by text-embedding-005.</li>
+    <li><b>Disclosed repairs.</b> 18 grades came back empty (the judge spent its output cap on thinking) and were asked again with the same judge and a larger cap; 9 were then correct. No failed answer was scored. Ingest of the first 3 conversations was reused from an earlier run with identical settings after a check that the stored data was complete.</li>
+    <li><b>Cost.</b> About 616 SEK of metered model calls for the full run, on Google's discounted Flex tier.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Limits</h2>
+  <ul>
+    <li>One dataset, English only. Every conversation fit in the context window, so this says nothing about histories that do not; that is where a memory system has to earn its place, and it is our next test.</li>
+    <li>Two memory systems, both open source. Mem0's hosted platform and its newer published algorithm were not tested.</li>
+    <li>Each system ran under our shared protocol, not its vendor's own evaluation recipe.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><b>Code, spec and every answer:</b> <a href="https://github.com/Hagraeso/narva-memory-bench">github.com/Hagraeso/narva-memory-bench</a> · <a href="https://huggingface.co/datasets/Hagras87/narva-memory-bench-locomo">Hugging Face dataset</a>. Code MIT; results CC BY-NC 4.0, the license of <a href="https://github.com/snap-research/locomo">LoCoMo</a> (Maharana et al., 2024).</p>
+  <p>Prior work this agrees with: <a href="https://www.letta.com/blog/benchmarking-ai-agent-memory">Letta's file-based agent on LoCoMo</a>, the Mem0 paper's own full-context row, and the public Mem0 and Zep exchange over LoCoMo scoring.</p>
+  <p>Narva is an independent test bench for agent memory. It sells no memory system. If you think a system was set up unfairly, open an issue and say how; we will rerun it under a new pre-registered spec.</p>
+</footer>
+</main>
+</body>
+</html>

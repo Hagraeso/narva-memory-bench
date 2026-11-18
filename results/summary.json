@@ -1,0 +1,2267 @@
+{
+ "run_id": "phaseB-20261117T175124Z-r10e92",
+ "bench": "DOM-01-phaseB-v2.1",
+ "spec_sha256": "fc83e666b10da9a1ffe26ce9e7ab8817bfba4e734525b03f47c3e85a8f6fa547",
+ "judge_model": "gemini-3.1-pro-preview",
+ "systems": {
+  "baseline": {
+   "accuracy": 0.6065,
+   "questions": 1540,
+   "prompt_tokens_mean": 681,
+   "failed_ingest_sessions": 0,
+   "cache_tokens": null,
+   "cached_input_tokens": 0,
+   "non_flex_calls": 0,
+   "ingest_outcomes": null,
+   "unparsed_judgements": 0,
+   "answer_errors": 0,
+   "by_conversation": {
+    "conv-26": 0.6447,
+    "conv-30": 0.679,
+    "conv-41": 0.6908,
+    "conv-42": 0.5327,
+    "conv-43": 0.573,
+    "conv-44": 0.6341,
+    "conv-47": 0.6533,
+    "conv-48": 0.5759,
+    "conv-49": 0.5256,
+    "conv-50": 0.6329
+   },
+   "by_category": {
+    "1": 0.383,
+    "2": 0.6355,
+    "3": 0.1979,
+    "4": 0.717
+   },
+   "spend_sek": {
+    "ingest": 0,
+    "answer": 21.0
+   }
+  },
+  "fullcontext": {
+   "accuracy": 0.7987,
+   "questions": 1540,
+   "prompt_tokens_mean": 26751,
+   "failed_ingest_sessions": 0,
+   "cache_tokens": {
+    "conv-30": 16151,
+    "conv-26": 20376,
+    "conv-48": 27871,
+    "conv-41": 30802,
+    "conv-47": 28860,
+    "conv-43": 30862,
+    "conv-49": 22654,
+    "conv-44": 29986,
+    "conv-50": 28060,
+    "conv-42": 26543
+   },
+   "cached_input_tokens": 41170923,
+   "non_flex_calls": 201,
+   "ingest_outcomes": null,
+   "unparsed_judgements": 0,
+   "answer_errors": 0,
+   "by_conversation": {
+    "conv-26": 0.8026,
+    "conv-30": 0.8395,
+    "conv-41": 0.8618,
+    "conv-42": 0.7588,
+    "conv-43": 0.736,
+    "conv-44": 0.813,
+    "conv-47": 0.8267,
+    "conv-48": 0.8063,
+    "conv-49": 0.7885,
+    "conv-50": 0.7975
+   },
+   "by_category": {
+    "1": 0.6454,
+    "2": 0.8069,
+    "3": 0.4062,
+    "4": 0.8918
+   },
+   "spend_sek": {
+    "ingest": 0,
+    "answer": 49.6
+   }
+  },
+  "mem0": {
+   "accuracy": 0.4578,
+   "questions": 1540,
+   "prompt_tokens_mean": 475,
+   "failed_ingest_sessions": 0,
+   "cache_tokens": null,
+   "cached_input_tokens": 0,
+   "non_flex_calls": 0,
+   "ingest_outcomes": [
+    {
+     "conversation": "conv-30",
+     "session": 1,
+     "messages": 28,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 2,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 3,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 4,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 5,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 6,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 7,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 8,
+     "messages": 26,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 9,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 10,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 11,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-30",
+     "session": 12,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 13,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 14,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-30",
+     "session": 15,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 16,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 17,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 18,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-30",
+     "session": 19,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 1,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 2,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 3,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 4,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 5,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 6,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 7,
+     "messages": 27,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 8,
+     "messages": 39,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-26",
+     "session": 9,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-26",
+     "session": 10,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 11,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 12,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 13,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-26",
+     "session": 14,
+     "messages": 35,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-26",
+     "session": 15,
+     "messages": 28,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-26",
+     "session": 16,
+     "messages": 20,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-26",
+     "session": 17,
+     "messages": 26,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-26",
+     "session": 18,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-26",
+     "session": 19,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 1,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 2,
+     "messages": 28,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 3,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 4,
+     "messages": 26,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-41",
+     "session": 5,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 6,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 7,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 8,
+     "messages": 26,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-41",
+     "session": 9,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 10,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-41",
+     "session": 11,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 12,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 13,
+     "messages": 37,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-41",
+     "session": 14,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 15,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 16,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 17,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 18,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 19,
+     "messages": 26,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-41",
+     "session": 20,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-41",
+     "session": 21,
+     "messages": 29,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 22,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 23,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 24,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 25,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-41",
+     "session": 26,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 27,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 28,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 29,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 30,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 31,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-41",
+     "session": 32,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 1,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 2,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 3,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 4,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 5,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 6,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 7,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 8,
+     "messages": 33,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-49",
+     "session": 9,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 10,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 11,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 12,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 13,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 14,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 15,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 16,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 17,
+     "messages": 28,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 18,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 19,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 20,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 21,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-49",
+     "session": 22,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 23,
+     "messages": 33,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-49",
+     "session": 24,
+     "messages": 24,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-49",
+     "session": 25,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 1,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 2,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 3,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 4,
+     "messages": 28,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 5,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 6,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 7,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-50",
+     "session": 8,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 9,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 10,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 11,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 12,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 13,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 14,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 15,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 16,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 17,
+     "messages": 10,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 18,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 19,
+     "messages": 12,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 20,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 21,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-50",
+     "session": 22,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 23,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 24,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 25,
+     "messages": 31,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-50",
+     "session": 26,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 27,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-50",
+     "session": 28,
+     "messages": 43,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-50",
+     "session": 29,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-50",
+     "session": 30,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 1,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 2,
+     "messages": 29,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 3,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 4,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 5,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 6,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 7,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 8,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 9,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-42",
+     "session": 10,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 11,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 12,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 13,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 14,
+     "messages": 27,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 15,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 16,
+     "messages": 16,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 2,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-42",
+     "session": 17,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 18,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 19,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 20,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 21,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-42",
+     "session": 22,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 23,
+     "messages": 30,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 24,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 25,
+     "messages": 29,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-42",
+     "session": 26,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 27,
+     "messages": 38,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-42",
+     "session": 28,
+     "messages": 33,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-42",
+     "session": 29,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 1,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 2,
+     "messages": 32,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 3,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 4,
+     "messages": 44,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 6,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-48",
+     "session": 5,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 6,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 7,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 8,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-48",
+     "session": 9,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 10,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 11,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 12,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 13,
+     "messages": 27,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-48",
+     "session": 14,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 15,
+     "messages": 39,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 16,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-48",
+     "session": 17,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 18,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-48",
+     "session": 19,
+     "messages": 24,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-48",
+     "session": 20,
+     "messages": 26,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-48",
+     "session": 21,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 22,
+     "messages": 30,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 23,
+     "messages": 32,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 24,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 25,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 26,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-48",
+     "session": 27,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-48",
+     "session": 28,
+     "messages": 30,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-48",
+     "session": 29,
+     "messages": 34,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-48",
+     "session": 30,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 1,
+     "messages": 24,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 2,
+     "messages": 26,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 3,
+     "messages": 31,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 4,
+     "messages": 30,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 5,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 6,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 7,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-44",
+     "session": 8,
+     "messages": 28,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 9,
+     "messages": 27,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-44",
+     "session": 10,
+     "messages": 29,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-44",
+     "session": 11,
+     "messages": 38,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-44",
+     "session": 12,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 13,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 14,
+     "messages": 27,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-44",
+     "session": 15,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-44",
+     "session": 16,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-44",
+     "session": 17,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 18,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 19,
+     "messages": 30,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-44",
+     "session": 20,
+     "messages": 40,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 21,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 22,
+     "messages": 13,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 23,
+     "messages": 28,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-44",
+     "session": 24,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 25,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 26,
+     "messages": 47,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-44",
+     "session": 27,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-44",
+     "session": 28,
+     "messages": 18,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 1,
+     "messages": 37,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 2,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-47",
+     "session": 3,
+     "messages": 23,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 4,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 5,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 6,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 7,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 8,
+     "messages": 40,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 9,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 10,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 11,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 12,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 13,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-47",
+     "session": 14,
+     "messages": 34,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 15,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-47",
+     "session": 16,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-47",
+     "session": 17,
+     "messages": 37,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 18,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-47",
+     "session": 19,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 20,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 21,
+     "messages": 19,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 22,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 23,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 24,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-47",
+     "session": 25,
+     "messages": 25,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-47",
+     "session": 26,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 27,
+     "messages": 14,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 28,
+     "messages": 35,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 29,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 30,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-47",
+     "session": 31,
+     "messages": 25,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 1,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 2,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 3,
+     "messages": 35,
+     "whole_ok": true,
+     "whole_tries": 3
+    },
+    {
+     "conversation": "conv-43",
+     "session": 4,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 5,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 6,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 7,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 8,
+     "messages": 37,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 9,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 10,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 11,
+     "messages": 30,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 4,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 12,
+     "messages": 29,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 13,
+     "messages": 22,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 14,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 15,
+     "messages": 38,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 16,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 17,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 18,
+     "messages": 15,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 19,
+     "messages": 23,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 20,
+     "messages": 43,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 6,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 21,
+     "messages": 19,
+     "whole_ok": true,
+     "whole_tries": 2
+    },
+    {
+     "conversation": "conv-43",
+     "session": 22,
+     "messages": 18,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 3,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 23,
+     "messages": 16,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 24,
+     "messages": 20,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 25,
+     "messages": 17,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 26,
+     "messages": 38,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 27,
+     "messages": 40,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 5,
+     "chunks_failed": 0
+    },
+    {
+     "conversation": "conv-43",
+     "session": 28,
+     "messages": 21,
+     "whole_ok": true,
+     "whole_tries": 1
+    },
+    {
+     "conversation": "conv-43",
+     "session": 29,
+     "messages": 15,
+     "whole_ok": false,
+     "whole_tries": 3,
+     "chunks": 2,
+     "chunks_failed": 0
+    }
+   ],
+   "unparsed_judgements": 0,
+   "answer_errors": 0,
+   "by_conversation": {
+    "conv-26": 0.4211,
+    "conv-30": 0.4938,
+    "conv-41": 0.4868,
+    "conv-42": 0.4422,
+    "conv-43": 0.3764,
+    "conv-44": 0.4228,
+    "conv-47": 0.5,
+    "conv-48": 0.5812,
+    "conv-49": 0.4295,
+    "conv-50": 0.4241
+   },
+   "by_category": {
+    "1": 0.3972,
+    "2": 0.3863,
+    "3": 0.2292,
+    "4": 0.5315
+   },
+   "spend_sek": {
+    "ingest": 176.7,
+    "answer": 21.3
+   }
+  },
+  "graphiti": {
+   "accuracy": 0.5214,
+   "questions": 1540,
+   "prompt_tokens_mean": 387,
+   "failed_ingest_sessions": 0,
+   "cache_tokens": null,
+   "cached_input_tokens": 0,
+   "non_flex_calls": 0,
+   "ingest_outcomes": null,
+   "unparsed_judgements": 0,
+   "answer_errors": 0,
+   "by_conversation": {
+    "conv-26": 0.5197,
+    "conv-30": 0.5185,
+    "conv-41": 0.6184,
+    "conv-42": 0.5126,
+    "conv-43": 0.4551,
+    "conv-44": 0.5041,
+    "conv-47": 0.52,
+    "conv-48": 0.5445,
+    "conv-49": 0.5449,
+    "conv-50": 0.481
+   },
+   "by_category": {
+    "1": 0.3652,
+    "2": 0.6573,
+    "3": 0.2188,
+    "4": 0.5565
+   },
+   "spend_sek": {
+    "ingest": 180.5,
+    "answer": 22.3
+   }
+  }
+ },
+ "comparison": {
+  "fullcontext": {
+   "diff_vs_baseline": {
+    "mean": 0.1922,
+    "lo": 0.1688,
+    "hi": 0.2162,
+    "n_items": 1540
+   },
+   "verdict": "Better than baseline"
+  },
+  "mem0": {
+   "diff_vs_baseline": {
+    "mean": -0.1487,
+    "lo": -0.1786,
+    "hi": -0.1195,
+    "n_items": 1540
+   },
+   "verdict": "Worse than baseline"
+  },
+  "graphiti": {
+   "diff_vs_baseline": {
+    "mean": -0.0851,
+    "lo": -0.113,
+    "hi": -0.0571,
+    "n_items": 1540
+   },
+   "verdict": "Worse than baseline"
+  }
+ },
+ "comparison_vs_fullcontext": {
+  "baseline": {
+   "diff_vs_fullcontext": {
+    "mean": -0.1922,
+    "lo": -0.2162,
+    "hi": -0.1688,
+    "n_items": 1540
+   },
+   "verdict": "Worse than full context"
+  },
+  "mem0": {
+   "diff_vs_fullcontext": {
+    "mean": -0.3409,
+    "lo": -0.3675,
+    "hi": -0.3149,
+    "n_items": 1540
+   },
+   "verdict": "Worse than full context"
+  },
+  "graphiti": {
+   "diff_vs_fullcontext": {
+    "mean": -0.2773,
+    "lo": -0.3032,
+    "hi": -0.2513,
+    "n_items": 1540
+   },
+   "verdict": "Worse than full context"
+  }
+ },
+ "meter": {
+  "baseline:answer|gemini-3-flash-preview": {
+   "calls": 1540,
+   "in": 1048189,
+   "out": 567459,
+   "non_flex": 0,
+   "cached_in": 0,
+   "sek": 21.04
+  },
+  "judge:gemini-3.1-pro-preview|gemini-3.1-pro-preview": {
+   "calls": 6160,
+   "in": 674210,
+   "out": 856040,
+   "non_flex": 0,
+   "cached_in": 0,
+   "sek": 61.01
+  },
+  "fullcontext:answer|gemini-3-flash-preview": {
+   "calls": 1540,
+   "in": 41195944,
+   "out": 338157,
+   "non_flex": 201,
+   "cached_in": 41170923,
+   "sek": 49.65
+  },
+  "mem0:ingest|gemini-3-flash-preview": {
+   "calls": 415,
+   "in": 4271013,
+   "out": 5708196,
+   "non_flex": 0,
+   "cached_in": 1396026,
+   "sek": 176.73
+  },
+  "mem0:answer|gemini-3-flash-preview": {
+   "calls": 1540,
+   "in": 731034,
+   "out": 628652,
+   "non_flex": 0,
+   "cached_in": 0,
+   "sek": 21.28
+  },
+  "graphiti:ingest|gemini-3-flash-preview": {
+   "calls": 2874,
+   "in": 10173887,
+   "out": 4673849,
+   "non_flex": 0,
+   "cached_in": 20247,
+   "sek": 180.5
+  },
+  "graphiti:answer|gemini-3-flash-preview": {
+   "calls": 1540,
+   "in": 595828,
+   "out": 688108,
+   "non_flex": 0,
+   "cached_in": 0,
+   "sek": 22.32
+  },
+  "fullcontext:lost_attempt_1|extra": {
+   "sek": 25.0
+  },
+  "fullcontext:lost_attempt_2|extra": {
+   "sek": 47.0
+  },
+  "fullcontext:cache|extra": {
+   "sek": 11.01
+  }
+ },
+ "measured_spend_sek": 615.6,
+ "finished_at": "2026-11-18T13:53:49.466925+00:00",
+ "verdict_repair": {
+  "why": "empty verdicts from the judge (output cap spent on thinking) had been scored as wrong",
+  "how": "same judge model, prompt, temperature and thinking level, output cap 2048 instead of 512, only for those answers",
+  "systems": {
+   "mem0": {
+    "repaired": 8,
+    "now_correct": 4
+   },
+   "graphiti": {
+    "repaired": 10,
+    "now_correct": 5
+   }
+  },
+  "spend_sek": 0.15,
+  "code_sha256_prefix": "2f26a637d3cd7ced"
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "written_at": "2026-11-18T01:50:00Z",
+ "what": "attempt 2 of fullcontext (code 8f725a87) answered 1,505 of 1,540 questions, but 35 calls (2.3%) were refused by Flex 20 times in a row; the run stopped by its own rule (more than 2% failed answers) at 00:31 UTC, and because answers were only saved at the end of a system, no answer of attempt 2 was kept",
+ "evidence": "log line 'fullcontext: 35 of 1540 answers failed; not scoring a broken run'; Cloud Monitoring 22:00-23:00 UTC about 90 successful and 700 refused (429) gemini-3-flash-preview calls per 15 minutes",
+ "spend": "attempt 2 metered about 47 SEK (119 at stop minus 72 at start), not saved in state.json; added to meter_extra as fullcontext:lost_attempt_2",
+ "code_change": {
+  "before": "8f725a878b828ccd",
+  "changes": [
+   "answers are saved every 50 and at the end of each pass, and a resumed run asks only questions without a good answer",
+   "failed answers are asked again in up to two more passes; an answer that failed is never scored, and the run stops (keeping good answers) if any remain",
+   "after 8 Flex refusals a call goes to the standard tier of the same model with the same settings; such calls are priced at full price and counted as non-Flex, as the spec's flex_check requires"
+  ],
+  "effect_on_measurement": "none: same model, prompts, settings, judge and statistics; the rule is stricter than before (0 failed answers scored instead of up to 2%)"
+ }
+}

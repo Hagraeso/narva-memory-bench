@@ -1,0 +1,92 @@
+{
+ "bench": "DOM-01-phaseB-v2.1",
+ "domain": "DOM-01",
+ "purpose": "Round 1: recall accuracy of real memory products on the whole LoCoMo set (all 10 conversations) under one Narva protocol, compared with Narva's vector-only baseline and with the whole conversation in the context window (phase D), every answer judged by gemini-3.1-pro-preview.",
+ "dataset": {
+  "repo": "snap-research/locomo",
+  "commit": "3eb6f2c585f5e1699204e3c3bdf7adc5c28cb376",
+  "file": "data/locomo10.json",
+  "sha256": "79fa87e90f04081343b8c8debecb80a9a6842b76a7aa537dc9fdf651ea698ff4",
+  "questions": "all 10 conversations in the file, categories 1-4 (1,540 questions), category 5 excluded"
+ },
+ "n_conversations": 10,
+ "systems": {
+  "baseline": "narva-ref-mem vector only (code/bench/refmem.py), each turn one memory with its session date, top 10 turns as context",
+  "fullcontext": "phase D: no memory system; every session of the conversation, in order and each with its date header, is the context for every question (same renderer and same answer prompt as the other systems)",
+  "mem0": "mem0ai 2.2.1 open source with spaCy, pgvector; each session added as one call of messages '[session date] speaker: text' under user_id <conversation>; search filters user_id=<conversation>, top 10 memories as context; a session whose extraction reply is malformed is retried up to 3 times, then added in chunks of 8 messages (each retried up to 3 times); every session's path is recorded and reported",
+  "graphiti": "graphiti-core 0.31.2 on FalkorDB; each session one message episode with reference_time = session date, group_id = <conversation>, sessions added in order; search group_ids [<conversation>], 10 facts with their valid dates as context"
+ },
+ "order": "baseline, fullcontext, mem0, graphiti, all in one run id",
+ "reuse_ingest": {
+  "mem0": {
+   "record": "gs://narva-rnd-engine-runs/tests/phaseB-20261117T091244Z-513a7c/ingest_mem0.json",
+   "conversations": [
+    "conv-26",
+    "conv-30",
+    "conv-41"
+   ],
+   "tag": "bbd8ef",
+   "why": "ingest of the first 3 conversations under DOM-01-phaseB-v1.2, whose Mem0 ingest settings are identical to this spec; data on the VM disk"
+  },
+  "graphiti": {
+   "record": "gs://narva-rnd-engine-runs/tests/phaseB-20261117T113427Z-043388/ingest_graphiti.json",
+   "conversations": [
+    "conv-26",
+    "conv-30",
+    "conv-41"
+   ],
+   "tag": "1886b0",
+   "why": "ingest of the first 3 conversations under DOM-01-phaseB-v1.3, whose Graphiti ingest settings are identical to this spec; data on the VM disk"
+  },
+  "rule": "only ingest is reused; every answer and every verdict in this run is new. Before a reused conversation is scored, the store is checked (Mem0: at least one memory for the conversation; Graphiti: one episode per session); a failed check stops the run. Every fresh ingest is checked the same way."
+ },
+ "models": {
+  "answer": "gemini-3-flash-preview, temperature 0, thinking level low, Flex tier, same answer prompt as DOM-01-bench-v1; for fullcontext the shared prompt prefix comes from the context cache",
+  "systems_internal": "gemini-3-flash-preview on Vertex AI, Flex tier, for Mem0 extraction and Graphiti extraction",
+  "embedding": "text-embedding-005 for every system",
+  "judge": "gemini-3.1-pro-preview, temperature 0, thinking level low, Flex tier, same judge prompt as DOM-01-bench-v1; judges every answer of every system (a different model from the answerer)"
+ },
+ "judge_policy": "pro_all",
+ "flex_check": "every model response must report trafficType ON_DEMAND_FLEX; the count of responses that do not is reported",
+ "caching": "fullcontext puts the answer prompt up to the question (instructions and the whole conversation) into one explicit Vertex context cache per conversation (TTL 4 hours, deleted after answering) and sends only 'QUESTION: ... ANSWER:' with each question; the text the model receives is the same answer prompt as for the other systems, split into two user parts. A cache that cannot be made stops the run. The smoke run fails unless cached input tokens are reported. The cost guard prices each call by what the response reports: Flex discount only on calls served on Flex, cached input tokens at cached_input_factor of the full input price, and cache storage for the whole TTL up front.",
+ "primary_metric": "answer accuracy per question; each system compared with the baseline over the same questions, paired difference (system minus baseline), 95% percentile bootstrap interval, 10000 resamples, seed 0",
+ "phase_d_metric": "each other system compared with fullcontext over the same questions, paired difference (system minus fullcontext), same bootstrap",
+ "verdict_rule": {
+  "Better than baseline": "whole interval above 0",
+  "Worse than baseline": "whole interval below 0",
+  "No difference": "interval contains 0"
+ },
+ "verdict_rule_phase_d": {
+  "Better than full context": "whole interval above 0",
+  "Worse than full context": "whole interval below 0",
+  "No difference": "interval contains 0"
+ },
+ "secondary_metrics": [
+  "accuracy by category",
+  "prompt tokens per question",
+  "ingest model tokens and wall time per system",
+  "measured model spend per system",
+  "Mem0 ingest outcomes: sessions accepted whole, after retries, only in chunks, or with chunks still failing",
+  "accuracy by conversation",
+  "cached input tokens for fullcontext",
+  "ingest check per conversation"
+ ],
+ "limits": "Narva protocol, not each vendor's own: the numbers compare systems with each other and cannot confirm a vendor's published score. Sessions are ingested whole, not message by message. Dates reach Mem0 only inside the message text, because its open-source SDK refuses an observed-time parameter. Mem0 open source 2.2.1 builds its extraction prompt with an Observation Date field but its add() never fills it, so the observation date is always the day of ingest; this is the library's behaviour, not a Narva setting, and no documented open-source parameter changes it. This run measures the open-source library, not Mem0's hosted platform or its newer published algorithm.",
+ "cost_guard_sek": 590,
+ "round_cap_sek": 650,
+ "price_assumptions_usd_per_million_tokens_before_flex_discount": {
+  "flash_in": 0.9,
+  "flash_out": 5.4,
+  "lite_in": 0.25,
+  "lite_out": 1.5,
+  "pro_in": 2.0,
+  "pro_out": 12.0,
+  "flex_factor": 0.5,
+  "usd_to_sek": 10.5,
+  "cached_input_factor": 0.1,
+  "cache_storage_usd_per_million_token_hours": 1.0
+ },
+ "supersedes": "DOM-01-phaseB-v2.0 (never run in full: its smoke run found that the Graphiti store check counted in the wrong graph, and that Flex reported no implicit caching), and DOM-01-phaseB-v1.2 and v1.3 as the record for all LoCoMo phase B numbers once this run is approved",
+ "infrastructure": "runs on narva-tester-vm; Mem0's Postgres data on the VM disk so a crash after ingest can resume; retrieval retried with backoff, at most 8 retrievals in parallel; FalkorDB data on the VM disk so Graphiti's ingest can resume; reused ingest data stays on the same VM disk",
+ "price_note": "cached-input factor and cache storage price are assumptions; real spend is read from billing before and after the run"
+}

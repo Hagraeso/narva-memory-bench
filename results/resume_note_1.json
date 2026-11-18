@@ -1,0 +1,20 @@
+{
+ "written_at": "2026-11-17T21:05:00Z",
+ "what": "attempt 1 of the fullcontext system stalled and the VM was stopped by Claude at about 20:55 UTC",
+ "evidence": "Cloud Monitoring model_invocation_count for gemini-3-flash-preview, 18:50-20:10 UTC: about 9,900 responses with code 429, 9 with 504, about 700 with 200; no log line from the run after 18:50; no answers_fullcontext.json was written, so no phase D answer or verdict exists from attempt 1",
+ "cause": "64 concurrent ~20k-token phase D calls on the Flex tier were mostly refused with 429; the runner's model calls had no timeout, so the run waited without end on calls that never returned",
+ "code_change": {
+  "before_code_sha256_prefix": "c0f83450e328a52c",
+  "after_code_sha256_prefix": "8f725a878b828ccd",
+  "changes": [
+   "15-minute timeout on every model call, retried",
+   "20 attempts with jittered backoff up to 180 s instead of 10 up to 90 s",
+   "phase D calls limited to 12 in flight (FULLCONTEXT_CONCURRENCY)",
+   "a progress log line every 100 finished calls",
+   "a resumed run skips systems already finished (the baseline)"
+  ],
+  "effect_on_measurement": "none: prompts, models, settings, judge and statistics are unchanged; the baseline answers and verdicts from attempt 1 stand"
+ },
+ "spend": "about 700 successful phase D calls in attempt 1 were not metered; 25 SEK (an upper estimate) is added to meter_extra as fullcontext:lost_attempt_1 so the cost guard counts it; billing gives the real figure",
+ "smoke": "a new smoke run with the changed code must pass before this run resumes"
+}
