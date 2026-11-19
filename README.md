@@ -45,6 +45,10 @@ These agree with earlier reports that simple approaches do well on LoCoMo ([Lett
 - Two memory systems, both open source. Mem0's hosted platform and newer published algorithm were not tested.
 - Each system ran under this shared protocol, not its vendor's own evaluation recipe.
 
+## Rerun it on your own data
+
+[`kit/`](kit) holds `narva-assay`: one command reruns a finding on your own conversations under this protocol (same prompts, judge rule, baseline and statistics), with your memory system plugged in, and reports whether the finding held on your data. Nothing is spent until you pass `--yes`. See [`kit/README.md`](kit/README.md).
+
 ## Repository
 
 | Path | What |
@@ -56,6 +60,7 @@ These agree with earlier reports that simple approaches do well on LoCoMo ([Lett
 | `code/Dockerfile`, `code/requirements.txt`, `code/vm_round1.sh` | Image and VM script used for the run (Google Cloud specific) |
 | `results/summary.json` | Accuracy, categories, conversations, intervals, metered spend |
 | `results/answers_*.json` | Every question, answer key, answer, verdict and prompt size, per system |
+| `kit/` | `narva-assay`, the rerun kit (MIT) |
 | `docs/index.html` | The write-up |
 
 The same results are on Hugging Face: https://huggingface.co/datasets/Hagras87/narva-memory-bench-locomo

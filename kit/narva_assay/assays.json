@@ -1,0 +1,64 @@
+{
+ "DOM-01-S17": {
+  "title": "When the history fits in the context window, putting all of it in beats every memory tested",
+  "prediction": "On LongMemEval histories that fit the answer model's window, putting the whole history in will again beat plain retrieval and both fact-extracting memories.",
+  "breaks_if": "Any memory system's interval against the whole history is entirely above zero on histories that fit the window.",
+  "systems": [
+   "fullcontext",
+   "baseline"
+  ],
+  "check": "compare",
+  "held_if": "lo>0",
+  "broken_if": "hi<0",
+  "note": "Valid only if every conversation fits the answer model's context window: check 'Largest prompt' for fullcontext against your model's limit."
+ },
+ "DOM-01-S5": {
+  "title": "Adding keyword search to vector retrieval gave no gain on LoCoMo",
+  "prediction": "Adding keyword fusion to vector retrieval will also show no gain on other conversational English benchmarks such as LongMemEval.",
+  "breaks_if": "A pre-registered run on another conversational benchmark gives an interval for hybrid against vector only that lies entirely above zero.",
+  "systems": [
+   "hybrid",
+   "baseline"
+  ],
+  "check": "compare",
+  "held_if": "lo<=0",
+  "broken_if": "lo>0",
+  "note": "Hybrid is Narva's I3 setting: BM25 and vector fused by reciprocal rank (k=60, 50 candidates each)."
+ },
+ "DOM-01-S16": {
+  "title": "Both fact-extracting memories lost to plain retrieval under one protocol",
+  "prediction": "On longer conversation benchmarks such as LongMemEval, Mem0 open source and Graphiti will again answer fewer questions than plain retrieval over raw turns under the same protocol.",
+  "breaks_if": "A pre-registered run on a longer benchmark gives either system an interval against plain retrieval that lies entirely above zero.",
+  "systems": [
+   "system",
+   "baseline"
+  ],
+  "check": "compare",
+  "needs_system": true,
+  "held_if": "hi<0",
+  "broken_if": "lo>0",
+  "note": "Pass your fact-extracting memory with --system; Narva measured Mem0 open source and Graphiti this way."
+ },
+ "DOM-01-S18": {
+  "title": "Mem0 open source dates extracted facts by the day of ingest",
+  "prediction": "Any Mem0 open-source version whose add() still leaves the Observation Date at the ingest day will date facts from imported history by the day of ingest.",
+  "breaks_if": "Such a version answers time questions on imported history with no answers naming the ingest year.",
+  "systems": [
+   "system"
+  ],
+  "check": "foreign_years",
+  "needs_system": true,
+  "note": "Ingest past conversations into your memory and ask time questions; a year in no session date (often the year you ingested) is the defect Narva found in Mem0 open source."
+ },
+ "DOM-01-S6": {
+  "title": "Single LoCoMo runs are noisy even at temperature 0",
+  "prediction": "Repeat passes of any configuration on LoCoMo will disagree on some verdicts, so single-run gaps of a few points between systems will not survive paired intervals.",
+  "breaks_if": "A repeat pass of a configuration agrees on every verdict.",
+  "systems": [
+   "baseline",
+   "baseline#2"
+  ],
+  "check": "agreement",
+  "note": "Two passes of the same configuration, same models, temperature 0; the share of matching verdicts shows how noisy a single run is."
+ }
+}

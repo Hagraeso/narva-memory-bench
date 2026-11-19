@@ -1,0 +1,19 @@
+[project]
+name = "narva-assay"
+version = "0.1.0"
+description = "Rerun a Narva store item's memory test on your own conversations, under Narva's protocol"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+gemini = ["google-genai>=1.0"]
+
+[project.scripts]
+narva-assay = "narva_assay.cli:main"
+
+[tool.setuptools]
+packages = ["narva_assay"]
+
+[tool.setuptools.package-data]
+narva_assay = ["assays.json"]
